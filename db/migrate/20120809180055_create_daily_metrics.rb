@@ -3,7 +3,7 @@ class CreateDailyMetrics < ActiveRecord::Migration
     create_table :daily_metrics do |t|
       t.references :measureable
       t.integer :day
-      t.integer :count
+      t.integer :count, :null => false, :default => 0
 
       t.timestamps
     end

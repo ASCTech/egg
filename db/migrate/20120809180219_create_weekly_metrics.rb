@@ -3,7 +3,7 @@ class CreateWeeklyMetrics < ActiveRecord::Migration
     create_table :weekly_metrics do |t|
       t.references :measureable
       t.integer :week
-      t.integer :count
+      t.integer :count, :null => false, :default => 0
 
       t.timestamps
     end

@@ -3,7 +3,7 @@ class CreateHourlyMetrics < ActiveRecord::Migration
     create_table :hourly_metrics do |t|
       t.references :measureable
       t.integer :hour
-      t.integer :count
+      t.integer :count, :null => false, :default => 0
 
       t.timestamps
     end
