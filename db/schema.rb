@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(:version => 20120809204009) do
 
   create_table "events", :force => true do |t|
     t.integer  "measureable_id"
-    t.datetime "happened_at"
+    t.datetime "timestamp"
     t.boolean  "processed"
     t.datetime "created_at",     :null => false
     t.datetime "updated_at",     :null => false

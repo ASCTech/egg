@@ -2,7 +2,7 @@ require 'test_helper'
 
 class EventTest < ActiveSupport::TestCase
   setup do
-    @event = Event.new :happened_at => Time.at(100000000)
+    @event = Event.new :timestamp => Time.at(100000000)
   end
 
   test "hour" do

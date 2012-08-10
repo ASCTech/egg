@@ -1,15 +1,17 @@
 class Event < ActiveRecord::Base
-  attr_accessible :happened_at
+  attr_accessible :timestamp
   belongs_to :measureable
+
+  validate :timestamp, :presence => true
 
   %w{hour day week}.each do |time_scale|
     define_method time_scale do
-      happened_at.to_i / 1.send(time_scale)
+      timestamp.to_i / 1.send(time_scale)
     end
   end
 
   def month
-    (happened_at.year - 1970) * 12 + happened_at.month
+    (timestamp.year - 1970) * 12 + timestamp.month
   end
 
   after_create :create_metrics

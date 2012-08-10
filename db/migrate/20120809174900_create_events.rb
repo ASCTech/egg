@@ -2,7 +2,7 @@ class CreateEvents < ActiveRecord::Migration
   def change
     create_table :events do |t|
       t.references :measureable
-      t.datetime :happened_at
+      t.datetime :timestamp
       t.boolean :processed
 
       t.timestamps
