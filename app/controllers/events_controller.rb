@@ -4,7 +4,8 @@ class EventsController < ApplicationController
 
   def create
     measureable = Measureable.find_or_create_by_name(params[:name], :service => params[:service])
-    if event = measureable.events.create(:timestamp => params[:timestamp])
+    event = measureable.events.build(:timestamp => params[:timestamp])
+    if event.save
       render :nothing => true, :status => 201
     else
       render :text => event.errors.full_messages.join("\n"), :status => 400

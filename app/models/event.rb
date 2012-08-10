@@ -2,7 +2,7 @@ class Event < ActiveRecord::Base
   attr_accessible :timestamp
   belongs_to :measureable
 
-  validate :timestamp, :presence => true
+  validates_presence_of :timestamp
 
   %w{hour day week}.each do |time_scale|
     define_method time_scale do
