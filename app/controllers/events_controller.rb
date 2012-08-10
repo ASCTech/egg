@@ -8,4 +8,8 @@ class EventsController < ApplicationController
     render :nothing => true, :status => 201
   end
 
+  def index
+    render :text => Event.count
+  end
+
 end

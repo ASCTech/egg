@@ -1,3 +1,4 @@
 Egg::Application.routes.draw do
-  post "/events/put" => "events#create"
+  post "/events" => "events#create"
+  get "/events" => "events#index"
 end
