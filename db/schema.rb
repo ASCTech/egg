@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120809180219) do
+ActiveRecord::Schema.define(:version => 20120809204009) do
 
   create_table "daily_metrics", :force => true do |t|
     t.integer  "measureable_id"
@@ -49,6 +49,16 @@ ActiveRecord::Schema.define(:version => 20120809180219) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  create_table "monthly_metrics", :force => true do |t|
+    t.integer  "measureable_id"
+    t.string   "month"
+    t.integer  "count"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
+
+  add_index "monthly_metrics", ["measureable_id"], :name => "index_monthly_metrics_on_measureable_id"
 
   create_table "weekly_metrics", :force => true do |t|
     t.integer  "measureable_id"
