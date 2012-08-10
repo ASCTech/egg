@@ -18,13 +18,11 @@ class Event < ActiveRecord::Base
 
   private
   def create_metrics
-    Thread.new do
-      HourlyMetric.add self
-      DailyMetric.add self
-      WeeklyMetric.add self
-      MonthlyMetric.add self
-      ActiveRecord::Base.connection.close
-    end
+    HourlyMetric.add self
+    DailyMetric.add self
+    WeeklyMetric.add self
+    MonthlyMetric.add self
+    ActiveRecord::Base.connection.close
   end
 
 end
