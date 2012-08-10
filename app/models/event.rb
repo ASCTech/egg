@@ -8,4 +8,21 @@ class Event < ActiveRecord::Base
     end
   end
 
+  def month
+    (happened_at.year - 1970) * 12 + happened_at.month
+  end
+
+  after_create :create_metrics
+
+  private
+  def create_metrics
+    Thread.new do
+      HourlyMetric.add self
+      DailyMetric.add self
+      WeeklyMetric.add self
+      MonthlyMetric.add self
+      ActiveRecord::Base.connection.close
+    end
+  end
+
 end

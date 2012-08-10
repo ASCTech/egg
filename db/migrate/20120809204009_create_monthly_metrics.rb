@@ -5,7 +5,6 @@ class CreateMonthlyMetrics < ActiveRecord::Migration
       t.string :month
       t.integer :count
 
-      t.timestamps
     end
     add_index :monthly_metrics, :measureable_id
   end

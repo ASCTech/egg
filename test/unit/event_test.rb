@@ -17,4 +17,8 @@ class EventTest < ActiveSupport::TestCase
     assert_equal 165, @event.week
   end
 
+  test "month" do
+    assert_equal 39, @event.month
+  end
+
 end

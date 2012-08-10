@@ -5,7 +5,6 @@ class CreateHourlyMetrics < ActiveRecord::Migration
       t.integer :hour
       t.integer :count, :null => false, :default => 0
 
-      t.timestamps
     end
     add_index :hourly_metrics, :measureable_id
   end

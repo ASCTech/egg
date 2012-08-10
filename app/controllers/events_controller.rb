@@ -4,8 +4,8 @@ class EventsController < ApplicationController
 
   def create
     measureable = Measureable.find_or_create_by_name(params[:name], :service => params[:service])
-    event = Event.find_or_create_by_measureable_id(measureable.id, :happened_at => params[:date])
-    render :json => event.
+    measureable.events.create!(:happened_at => params[:date])
+    render :nothing => true, :status => 201
   end
 
 end

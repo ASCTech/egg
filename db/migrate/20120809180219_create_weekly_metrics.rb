@@ -5,7 +5,6 @@ class CreateWeeklyMetrics < ActiveRecord::Migration
       t.integer :week
       t.integer :count, :null => false, :default => 0
 
-      t.timestamps
     end
     add_index :weekly_metrics, :measureable_id
   end
