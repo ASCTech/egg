@@ -4,7 +4,9 @@ gem 'rails'
 
 gem 'sqlite3', :group => [:test, :development]
 
-gem 'mysql', :group => [:staging, :production]
+gem 'mysql2', :group => [:staging, :production]
+
+gem 'capistrano'
 
 gem 'json'
 
