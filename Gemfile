@@ -8,6 +8,8 @@ gem 'mysql2', :group => [:staging, :production]
 
 gem 'capistrano'
 
+gem 'delayed_job_active_record'
+
 gem 'json'
 
 gem 'jquery-rails'

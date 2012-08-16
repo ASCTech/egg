@@ -25,4 +25,6 @@ class Event < ActiveRecord::Base
     ActiveRecord::Base.connection.close
   end
 
+  handle_asynchronously :create_metrics
+
 end
