@@ -1,4 +1,5 @@
 require 'bundler/capistrano'
+require 'delayed/recipes'
 
 set :keep_releases, 11
 
@@ -60,4 +61,4 @@ before "deploy:assets:precompile" do
   ].join(" && ")
 end
 
-after "deploy:restart", "deploy:cleanup"
+after 'deploy', 'delayed_job:restart', 'deploy:cleanup'
