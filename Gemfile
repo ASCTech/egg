@@ -10,6 +10,8 @@ gem 'capistrano'
 
 gem 'delayed_job_active_record'
 
+gem 'daemons'
+
 gem 'json'
 
 gem 'jquery-rails'
