@@ -65,7 +65,7 @@ ActiveRecord::Schema.define(:version => 20120816191645) do
   create_table "monthly_metrics", :force => true do |t|
     t.integer "measureable_id"
     t.string  "month"
-    t.integer "count"
+    t.integer "count",          :default => 0, :null => false
   end
 
   add_index "monthly_metrics", ["measureable_id"], :name => "index_monthly_metrics_on_measureable_id"
