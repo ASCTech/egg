@@ -1,8 +1,8 @@
 class EventsController < ActionController::Metal
 
   def create
-    measureable = Measureable.find_or_create_by_name(params[:name], :service => params[:service])
-    event = measureable.events.build(:timestamp => params[:timestamp])
+    measureable_id = Measureable.lookup_id_for(params[:service], params[:name])
+    event = Event.new(:timestamp => params[:timestamp], :measureable_id => measureable_id)
     if event.save
       self.response_body = ''
       self.status = 201

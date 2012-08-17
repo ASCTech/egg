@@ -1,5 +1,5 @@
 class Event < ActiveRecord::Base
-  attr_accessible :timestamp
+  attr_accessible :timestamp, :measureable_id
   belongs_to :measureable
 
   validates_presence_of :timestamp
@@ -14,7 +14,7 @@ class Event < ActiveRecord::Base
     (timestamp.year - 1970) * 12 + timestamp.month
   end
 
-  after_create :create_metrics
+#  after_create :create_metrics
 
   private
   def create_metrics
