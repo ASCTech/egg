@@ -14,7 +14,7 @@ class Event < ActiveRecord::Base
     (timestamp.year - 1970) * 12 + timestamp.month
   end
 
-#  after_create :create_metrics
+  after_create :create_metrics
 
   private
   def create_metrics

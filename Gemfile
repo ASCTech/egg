@@ -17,8 +17,10 @@ gem 'json'
 gem 'jquery-rails'
 
 group :assets do
-  gem 'sass-rails'
   gem 'coffee-rails'
+  gem 'sass-rails'
+
+  gem 'twitter-bootstrap-rails'
 
   gem 'uglifier'
 end
