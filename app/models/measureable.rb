@@ -12,4 +12,11 @@ class Measureable < ActiveRecord::Base
     end
   end
 
+  def self.chart_data_for(service)
+    data = []
+    where(:service => service).each do |measureable|
+      data << {'label' => measureable.name, 'data' => measureable.hourly_metrics.map{|metric| [metric.hour, metric.count]}}
+    end
+    data
+  end
 end

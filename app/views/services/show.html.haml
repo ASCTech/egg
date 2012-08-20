@@ -2,5 +2,12 @@
   =list_of @services do |service|
     =link_to service, root_path(:service => service)
 
-%h1  Services
-%p Find me in app/views/services/show.html.erb
+.page-header
+  %h1= @service
+
+#chart
+
+:javascript
+  $.getJSON('services/show.json?service=#{@service}', function(data) {
+    $.plot($("#chart"), data );
+  });
