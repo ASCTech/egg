@@ -18,6 +18,7 @@ class Event < ActiveRecord::Base
 
   private
   def increment_metrics
+    return if processed?
     HourlyMetric.increment  hour,   measureable_id
     DailyMetric.increment   day,    measureable_id
     WeeklyMetric.increment  week,   measureable_id
