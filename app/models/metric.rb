@@ -2,7 +2,7 @@ class Metric < ActiveRecord::Base
   belongs_to :measureable
   attr_accessible :count, :time_pointer, :measureable_id
 
-  abstract_class = true
+  self.abstract_class = true
 
   default_scope order ("time_pointer DESC")
 
