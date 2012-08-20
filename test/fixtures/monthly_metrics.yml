@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  measureable: 
+  month: MyString
+  count: 1
+
+two:
+  measureable: 
+  month: MyString
+  count: 1

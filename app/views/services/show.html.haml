@@ -1,0 +1,6 @@
+=content_for :nav_links do
+  =list_of @services do |service|
+    =link_to service, root_path(:service => service)
+
+%h1  Services
+%p Find me in app/views/services/show.html.erb

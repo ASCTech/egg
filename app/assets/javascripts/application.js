@@ -12,4 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require twitter/bootstrap
+//= require jquery.flot
+//= require jquery.flot.resize
 //= require_tree .
