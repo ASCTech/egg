@@ -22,6 +22,7 @@ class Event < ActiveRecord::Base
     DailyMetric.increment   day,    measureable_id
     WeeklyMetric.increment  week,   measureable_id
     MonthlyMetric.increment month,  measureable_id
+    update_column :processed, true
   end
 
   handle_asynchronously :increment_metrics
