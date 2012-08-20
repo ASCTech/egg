@@ -10,6 +10,6 @@
 #chart
 
 :javascript
-  $.getJSON('services/show.json?service=#{@service}', function(data) {
+  $.getJSON('services/show.json?service=#{@service}&time_scale=#{@time_scale}', function(data) {
     $.plot($("#chart"), data );
   });
