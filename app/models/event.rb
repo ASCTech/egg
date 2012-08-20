@@ -19,11 +19,14 @@ class Event < ActiveRecord::Base
   private
   def increment_metrics
     return if processed?
-    HourlyMetric.increment  hour,   measureable_id
-    DailyMetric.increment   day,    measureable_id
-    WeeklyMetric.increment  week,   measureable_id
-    MonthlyMetric.increment month,  measureable_id
-    update_column :processed, true
+
+    self.class.connection.transaction do
+      HourlyMetric.increment  hour,   measureable_id
+      DailyMetric.increment   day,    measureable_id
+      WeeklyMetric.increment  week,   measureable_id
+      MonthlyMetric.increment month,  measureable_id
+      update_column :processed, true
+    end
   end
 
   handle_asynchronously :increment_metrics

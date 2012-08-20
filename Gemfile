@@ -20,3 +20,7 @@ group :assets do
   gem 'twitter-bootstrap-rails'
   gem 'uglifier'
 end
+
+group :test do
+  gem 'shoulda-context'
+end
