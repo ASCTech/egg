@@ -1,4 +1,4 @@
-class DeleteMetrics < ActiveRecord::Migration
+class DeleteMetricsAgain < ActiveRecord::Migration
   def up
     HourlyMetric.delete_all
     DailyMetric.delete_all
