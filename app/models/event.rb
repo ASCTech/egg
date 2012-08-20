@@ -14,17 +14,16 @@ class Event < ActiveRecord::Base
     (timestamp.year - 1970) * 12 + timestamp.month
   end
 
-  after_create :create_metrics
+  after_create :increment_metrics
 
   private
-  def create_metrics
-    HourlyMetric.add self
-    DailyMetric.add self
-    WeeklyMetric.add self
-    MonthlyMetric.add self
-    ActiveRecord::Base.connection.close
+  def increment_metrics
+    HourlyMetric.increment  hour,   measureable_id
+    DailyMetric.increment   day,    measureable_id
+    WeeklyMetric.increment  week,   measureable_id
+    MonthlyMetric.increment month,  measureable_id
   end
 
-  handle_asynchronously :create_metrics
+  handle_asynchronously :increment_metrics
 
 end

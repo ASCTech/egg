@@ -35,9 +35,16 @@
 
       .content
         .row
-          .span12
+          .span9
             = yield
-
+        
+          .span3
+            .well.sidebar-nav
+              %h3 Time Scales
+              %ul.nav.nav-list
+                %li.nav-header Select a Scale
+                =list_of Metric::TIME_SCALES do |time_scale|
+                  =link_to time_scale, root_path(:service => @service, :time_scale => time_scale)
     
       %footer
         %p &copy; Company 2012

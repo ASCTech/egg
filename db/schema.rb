@@ -11,11 +11,11 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120816191645) do
+ActiveRecord::Schema.define(:version => 20120820152251) do
 
   create_table "daily_metrics", :force => true do |t|
     t.integer "measureable_id"
-    t.integer "day"
+    t.integer "time_pointer"
     t.integer "count",          :default => 0, :null => false
   end
 
@@ -49,7 +49,7 @@ ActiveRecord::Schema.define(:version => 20120816191645) do
 
   create_table "hourly_metrics", :force => true do |t|
     t.integer "measureable_id"
-    t.integer "hour"
+    t.integer "time_pointer"
     t.integer "count",          :default => 0, :null => false
   end
 
@@ -64,15 +64,15 @@ ActiveRecord::Schema.define(:version => 20120816191645) do
 
   create_table "monthly_metrics", :force => true do |t|
     t.integer "measureable_id"
-    t.string  "month"
-    t.integer "count",          :default => 0, :null => false
+    t.string  "time_pointer"
+    t.integer "count"
   end
 
   add_index "monthly_metrics", ["measureable_id"], :name => "index_monthly_metrics_on_measureable_id"
 
   create_table "weekly_metrics", :force => true do |t|
     t.integer "measureable_id"
-    t.integer "week"
+    t.integer "time_pointer"
     t.integer "count",          :default => 0, :null => false
   end
 

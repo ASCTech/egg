@@ -12,10 +12,10 @@ class Measureable < ActiveRecord::Base
     end
   end
 
-  def self.chart_data_for(service)
+  def self.chart_data_for(service, time_scale)
     data = []
     where(:service => service).each do |measureable|
-      data << {'label' => measureable.name, 'data' => measureable.hourly_metrics.map{|metric| [metric.hour, metric.count]}}
+      data << {'label' => measureable.name, 'data' => measureable.send("#{time_scale}_metrics").limit(50).map{|metric| [metric.time_pointer, metric.count]}}
     end
     data
   end
