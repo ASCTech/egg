@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120820181627) do
+ActiveRecord::Schema.define(:version => 20120821142451) do
 
   create_table "daily_metrics", :force => true do |t|
     t.integer "measureable_id"
@@ -64,8 +64,8 @@ ActiveRecord::Schema.define(:version => 20120820181627) do
 
   create_table "monthly_metrics", :force => true do |t|
     t.integer "measureable_id"
-    t.string  "time_pointer"
-    t.integer "count",          :default => 0, :null => false
+    t.integer "time_pointer",   :limit => 255
+    t.integer "count",                         :default => 0, :null => false
   end
 
   add_index "monthly_metrics", ["measureable_id"], :name => "index_monthly_metrics_on_measureable_id"
