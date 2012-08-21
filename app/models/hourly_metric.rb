@@ -4,4 +4,8 @@ class HourlyMetric < Metric
     time_pointer % 24
   end
 
+  def label
+    (Time.at(0) + time_pointer.hours).strftime("%a %-I %p")
+  end
+
 end
