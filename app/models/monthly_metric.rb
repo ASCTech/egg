@@ -9,7 +9,7 @@ class MonthlyMetric < Metric
   end
 
   def modulus
-    4
+    6
   end
 
 end
