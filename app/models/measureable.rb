@@ -18,10 +18,24 @@ class Measureable < ActiveRecord::Base
     where(:service => service).each do |measureable|
       metrics = measureable.send("#{time_scale}_metrics").limit(50)
       metrics.each do |metric|
-        chart_options["xaxis"]["ticks"][metric.time_pointer] = metric.label # if metric.time_pointer % metric.modulus == 0
+        chart_options["xaxis"]["ticks"][metric.time_pointer] = metric.label if metric.time_pointer % metric.modulus == 0
       end
       chart_data << {'label' => measureable.name, 'clickable' => true, 'bars' => { 'show' => true , 'lineWidth' => 0 }, 'data' => metrics.map{|metric| [metric.time_pointer, metric.count]}}
     end
+    chart_options["xaxis"]["ticks"] = chart_options["xaxis"]["ticks"].to_a
+    [chart_data, chart_options]
+  end
+
+  def chart_data(time_scale)
+    chart_data = []
+    chart_options = { "xaxis" => { "ticks" => {} , 'mode' => 'time' } }
+
+    metrics = send("#{time_scale}_metrics").limit(50)
+    metrics.each do |metric|
+      chart_options["xaxis"]["ticks"][metric.time_pointer] = metric.label if metric.time_pointer % metric.modulus == 0
+    end
+    
+    chart_data << {'label' => name, 'clickable' => true, 'bars' => { 'show' => true , 'lineWidth' => 0 }, 'data' => metrics.map{|metric| [metric.time_pointer, metric.count]}}
     chart_options["xaxis"]["ticks"] = chart_options["xaxis"]["ticks"].to_a
     [chart_data, chart_options]
   end
