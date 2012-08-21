@@ -1,0 +1,16 @@
+.span3
+  .well.sidebar-nav
+    %h3 Time Scales
+    %ul.nav.nav-list
+      %li.nav-header Select a Scale
+      =list_of Metric::TIME_SCALES do |time_scale|
+        =link_to time_scale.capitalize, measureable_path(@measureables.first.id, :time_scale => time_scale)
+
+    %h3 Measureables
+    %ul.nav.nav-list
+      %li.nav-header Select a Measureable
+      =list_of @measureables do |measureable|
+        =link_to measureable.name, measureable_path(measureable.id)
+
+
+    
