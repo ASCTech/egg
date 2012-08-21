@@ -4,4 +4,12 @@ class MonthlyMetric < Metric
     time_pointer % 12 + 1
   end
 
+  def label
+    Time.at(0).advance(:months => time_pointer).strftime("%a %m/%d")
+  end
+
+  def modulus
+    4 
+  end
+
 end

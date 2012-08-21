@@ -5,7 +5,11 @@ class DailyMetric < Metric
   end
 
   def label
-    (Time.at(0) + time_pointer.days).strftime("%a %d")
+    Time.at(0).advance(:days => time_pointer).strftime("%a %m/%d")
+  end
+
+  def modulus
+    7
   end
 
 end

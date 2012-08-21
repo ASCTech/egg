@@ -5,7 +5,11 @@ class HourlyMetric < Metric
   end
 
   def label
-    (Time.at(0) + time_pointer.hours).strftime("%a %-I %p")
+    Time.at(0).advance(:hours => time_pointer.hours).strftime("%a %-I %p")
+  end
+
+  def modulus
+    6
   end
 
 end
