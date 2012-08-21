@@ -4,7 +4,7 @@
     %ul.nav.nav-list
       %li.nav-header Select a Scale
       =list_of Metric::TIME_SCALES do |time_scale|
-        =link_to time_scale.capitalize, measureable_path(@measureables.first.id, :time_scale => time_scale)
+        =link_to time_scale.capitalize, measureable_path(@measureable.id, :time_scale => time_scale)
 
     %h3 Measureables
     %ul.nav.nav-list

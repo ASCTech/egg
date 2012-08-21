@@ -4,6 +4,7 @@ class ServicesController < ApplicationController
     @time_scale  = params[:time_scale] || 'hourly'
 
     @measureables = Measureable.where(:service => @service)
+    @measureable = Measureable.where(:service => @service).first
 
     respond_to do |format|
       format.html
