@@ -10,7 +10,7 @@
     %ul.nav.nav-list
       %li.nav-header Select a Measureable
       =list_of @measureables do |measureable|
-        =link_to measureable.name, measureable_path(measureable.id)
+        =link_to measureable.name, measureable_path(measureable.id, :time_scale => params[:time_scale])
 
 
     
