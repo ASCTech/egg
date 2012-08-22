@@ -37,9 +37,13 @@
         .row
           .span9
             = yield
-        
-          = render :partial => 'shared/time_scale'
+
+          .span3
+
+            = render :partial => 'shared/time_scale'
+
+            = render :partial => 'shared/measureable_list'
 
 
       %footer
-        %p ASC Technology Services 
+        %p ASC Technology Services
