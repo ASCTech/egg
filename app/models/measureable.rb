@@ -14,14 +14,14 @@ class Measureable < ActiveRecord::Base
 
   def self.chart_data_for(service, time_scale, metric_count)
     chart_data = []
-    chart_options = { "xaxis" => { "ticks" => {} , 'mode' => 'time' } }
+    chart_options = { "xaxis" => { "ticks" => {} } }
 
     where(:service => service).each do |measureable|
 
       data, options = measureable.chart_data(time_scale, metric_count)
 
       data.each {|datum| chart_data << datum}
-      chart_options.merge!(options)
+      chart_options["xaxis"]["ticks"] = options["xaxis"]["ticks"]
     end
 
     [chart_data, chart_options]
@@ -29,7 +29,7 @@ class Measureable < ActiveRecord::Base
 
   def chart_data(time_scale, metric_count)
     chart_data = []
-    chart_options = { "xaxis" => { "ticks" => {} , 'mode' => 'time' } }
+    chart_options = { "xaxis" => { "ticks" => {} } }
 
     metrics = send("#{time_scale}_metrics").limit(metric_count)
     metrics.each do |metric|
