@@ -1,26 +1,12 @@
-source 'https://rubygems.org'
+source "http://rubygems.org"
 
-gem 'rails'
+gem 'rake'
+gem 'fssm'
 
-gem 'sqlite3', :group => [:test, :development]
-gem 'mysql2', :group => [:staging, :production]
-
-gem 'capistrano'
-gem 'delayed_job_active_record'
-gem 'daemons'
-gem 'flot-rails'
-gem 'haml-rails'
-gem 'json'
-
-gem 'jquery-rails'
-
-group :assets do
-  gem 'coffee-rails'
-  gem 'sass-rails'
-  gem 'twitter-bootstrap-rails'
-  gem 'uglifier'
-end
-
-group :test do
-  gem 'shoulda-context'
-end
+gem 'haml'
+gem 'slim'
+gem 'compass'
+gem 'coffee-script'
+gem 'therubyracer'
+gem 'sprockets'
+gem 'uglifier'
