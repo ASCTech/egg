@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120821142451) do
+ActiveRecord::Schema.define(:version => 20120823194643) do
 
   create_table "daily_metrics", :force => true do |t|
     t.integer "measureable_id"
@@ -56,11 +56,13 @@ ActiveRecord::Schema.define(:version => 20120821142451) do
   add_index "hourly_metrics", ["measureable_id"], :name => "index_hourly_metrics_on_measureable_id"
 
   create_table "measureables", :force => true do |t|
-    t.string   "service"
     t.string   "name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.integer  "service_id"
   end
+
+  add_index "measureables", ["service_id"], :name => "index_measureables_on_service_id"
 
   create_table "monthly_metrics", :force => true do |t|
     t.integer "measureable_id"
@@ -69,6 +71,13 @@ ActiveRecord::Schema.define(:version => 20120821142451) do
   end
 
   add_index "monthly_metrics", ["measureable_id"], :name => "index_monthly_metrics_on_measureable_id"
+
+  create_table "services", :force => true do |t|
+    t.string   "name"
+    t.string   "key"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "weekly_metrics", :force => true do |t|
     t.integer "measureable_id"
