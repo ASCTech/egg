@@ -1,6 +1,6 @@
 class ServicesController < ApplicationController
   def show
-    @service      = Service.find(params[:id]) || @services.first
+    @service      = Service.find_by_id(params[:id]) || @services.first
     @time_scale   = params[:time_scale] || 'hourly'
     @metric_count = params[:metric_count] || 50
 
