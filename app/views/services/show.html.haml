@@ -9,6 +9,6 @@
 =link_to "< More", service_path(@service, :time_scale => @time_scale, :metric_count => @metric_count.to_i * 2)
 
 :javascript
-  $.getJSON('services/#{@service.id}.json?metric_count=#{@metric_count}&time_scale=#{@time_scale}', function(data) {
+  $.getJSON('/services/#{@service.id}.json?metric_count=#{@metric_count}&time_scale=#{@time_scale}', function(data) {
     $.plot($("#chart"), data[0], data[1] );
   });

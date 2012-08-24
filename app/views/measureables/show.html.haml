@@ -10,6 +10,6 @@
 =link_to "< More", measureable_path(@measureable, :time_scale => @time_scale, :metric_count => @metric_count.to_i * 2)
 
 :javascript
-  $.getJSON('#{@measureable.id}.json?metric_count=#{@metric_count}&time_scale=#{@time_scale}', function(data) {
+  $.getJSON('/measureables/#{@measureable.id}.json?metric_count=#{@metric_count}&time_scale=#{@time_scale}', function(data) {
     $.plot($("#chart"), data[0], data[1] );
   });
