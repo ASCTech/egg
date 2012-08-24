@@ -1,7 +1,15 @@
 class EventsController < ActionController::Metal
 
   def create
-    measureable_id = Measureable.lookup_id_for(params[:service], params[:name])
+    service_id = Service.find_or_create_by_name(params[:service]).try(:id)
+    service_id ||= Service.lookup_id_for(request.headers["X-API-Key"])
+    unless service_id
+      self.status = 403
+      self.response_body = "API Key Not Found"
+      return
+    end
+    measureable_id = Measureable.lookup_id_for(service_id, params[:name])
+
     event = Event.new(:timestamp => params[:timestamp], :measureable_id => measureable_id)
     if event.save
       self.response_body = ''

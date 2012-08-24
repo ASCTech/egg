@@ -1,14 +1,14 @@
 class Measureable < ActiveRecord::Base
-  attr_accessible :name, :service
+  attr_accessible :name, :service_id
   has_many :events
   has_many :hourly_metrics
   has_many :daily_metrics
   has_many :weekly_metrics
   has_many :monthly_metrics
 
-  def self.lookup_id_for(service, name)
-    Rails.cache.fetch("measurable_id_for[#{service},#{name}]") do
-      find_or_create_by_service_and_name(service, name).id
+  def self.lookup_id_for(service_id, name)
+    Rails.cache.fetch("measurable_id_for[#{service_id},#{name}]") do
+      find_or_create_by_service_id_and_name(service_id, name).id
     end
   end
 
