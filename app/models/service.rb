@@ -1,5 +1,6 @@
 class Service < ActiveRecord::Base
   attr_accessible :name
+  has_many :measureables
 
   before_validation :randomize_key
 
