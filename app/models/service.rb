@@ -1,5 +1,5 @@
 class Service < ActiveRecord::Base
-  attr_accessible :key, :name
+  attr_accessible :name
 
   before_validation :randomize_key
 
@@ -12,7 +12,7 @@ class Service < ActiveRecord::Base
 
   def lookup_id_for(api_key)
     Rails.cache.fetch "service_id_for #{api_key}" do
-      Service.find_by_api_key(api_key).try(:id)
+      Service.find_by_key(api_key).try(:id)
     end
   end
 end

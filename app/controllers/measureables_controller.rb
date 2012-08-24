@@ -1,10 +1,12 @@
 class MeasureablesController < ApplicationController
   def show
-    @measureable = Measureable.find(params[:id]) || @measureables.first
+    @measureable = Measureable.find(params[:id])
     @time_scale  = params[:time_scale] || 'hourly'
     @metric_count = params[:metric_count] || 50
 
-    @measureables = Measureable.where(:service => @measureable.service)
+    @service = @measureable.service
+
+    @measureables = @service.measureables
 
     respond_to do |format|
       format.html

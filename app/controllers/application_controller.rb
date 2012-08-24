@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   before_filter :load_services
 
   def load_services
-    @services = Measureable.pluck(:service).uniq.sort{|a,b|a.downcase <=> b.downcase}
+    @services = Service.order(:name).all
   end
 
 end

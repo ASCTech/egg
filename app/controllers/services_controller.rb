@@ -1,10 +1,10 @@
 class ServicesController < ApplicationController
   def show
-    @service      = params[:service] || @services.first
+    @service      = Service.find(params[:id]) || @services.first
     @time_scale   = params[:time_scale] || 'hourly'
     @metric_count = params[:metric_count] || 50
 
-    @measureables = Measureable.where(:service => @service)
+    @measureables = @service.measureables
 
     respond_to do |format|
       format.html

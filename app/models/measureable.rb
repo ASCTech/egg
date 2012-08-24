@@ -5,6 +5,7 @@ class Measureable < ActiveRecord::Base
   has_many :daily_metrics
   has_many :weekly_metrics
   has_many :monthly_metrics
+  belongs_to :service
 
   def self.lookup_id_for(service_id, name)
     Rails.cache.fetch("measurable_id_for[#{service_id},#{name}]") do
@@ -16,7 +17,7 @@ class Measureable < ActiveRecord::Base
     chart_data = []
     chart_options = { "xaxis" => { "ticks" => {} } }
 
-    where(:service => service).each do |measureable|
+    service.measureables.each do |measureable|
 
       data, options = measureable.chart_data(time_scale, metric_count)
 

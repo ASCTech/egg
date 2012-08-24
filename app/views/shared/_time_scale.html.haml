@@ -4,6 +4,6 @@
     %li.nav-header Select a Scale
     =list_of Metric::TIME_SCALES do |time_scale|
       - if @measureable
-        =link_to time_scale.capitalize, measureable_path(@measureable.id, :time_scale => time_scale)
+        =link_to time_scale.capitalize, measureable_path(@measureable, :time_scale => time_scale)
       - else
-        =link_to time_scale.capitalize, root_path(:service => @service, :time_scale => time_scale)
+        =link_to time_scale.capitalize, service_path(@service, :time_scale => time_scale)
