@@ -11,9 +11,9 @@ class Service < ActiveRecord::Base
     self.key = SecureRandom.hex(16)
   end
 
-  def lookup_id_for(api_key)
+  def self.lookup_id_for(api_key)
     Rails.cache.fetch "service_id_for #{api_key}" do
-      Service.find_by_key(api_key).try(:id)
+      find_by_key(api_key).try(:id)
     end
   end
 end
