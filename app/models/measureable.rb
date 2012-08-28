@@ -22,8 +22,10 @@ class Measureable < ActiveRecord::Base
       data, options = measureable.chart_data(time_scale, metric_count)
 
       data.each {|datum| chart_data << datum}
-      chart_options["xaxis"]["ticks"] = options["xaxis"]["ticks"]
+      chart_options["xaxis"]["ticks"].merge! Hash[*options["xaxis"]["ticks"].flatten]
     end
+
+    chart_options["xaxis"]["ticks"] = chart_options["xaxis"]["ticks"].to_a
 
     [chart_data, chart_options]
   end

@@ -1,10 +1,7 @@
 class EventsController < ActionController::Metal
 
   def create
-    service_id = Service.find_or_create_by_name(params[:service]).try(:id)
-    Rails.logger.warn("Found Service by name #{params[:service]}") if service_id
-    service_id ||= Service.lookup_id_for(request.headers["X-API-Key"])
-    unless service_id
+    unless service_id = Service.lookup_id_for(request.headers["X-API-Key"])
       self.status = 403
       self.response_body = "API Key Not Found"
       return
