@@ -7,9 +7,9 @@
 
 #chart
 
-=link_to "< More", measureable_path(@measureable, :time_scale => @time_scale, :metric_count => @metric_count.to_i * 2)
+=link_to "< More", measureable_path(@measureable, :time_scale => @time_scale, :metric_count => @go_back_to.to_i - 50)
 
 :javascript
-  $.getJSON('/measureables/#{@measureable.id}.json?metric_count=#{@metric_count}&time_scale=#{@time_scale}', function(data) {
+  $.getJSON('/measureables/#{@measureable.id}.json?go_back_to=#{@go_back_to}&time_scale=#{@time_scale}', function(data) {
     $.plot($("#chart"), data[0], data[1] );
   });

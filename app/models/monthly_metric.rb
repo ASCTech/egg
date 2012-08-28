@@ -13,7 +13,8 @@ class MonthlyMetric < Metric
   end
 
   def self.current_time_pointer
-    Time.zone.now.to_i / 1.hour
+    now = Time.zone.now
+    (now.year - 1970) * 12 + now.month
   end
 
 end
