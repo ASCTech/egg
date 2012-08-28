@@ -12,4 +12,8 @@ class MonthlyMetric < Metric
     3
   end
 
+  def self.current_time_pointer
+    Time.zone.now.to_i / 1.hour
+  end
+
 end

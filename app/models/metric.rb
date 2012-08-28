@@ -13,5 +13,13 @@ class Metric < ActiveRecord::Base
     metric.update_column(:count, metric.count + 1)
   end
 
+  def self.[](time_scale)
+    "#{time_scale.capitalize}Metric".constantize
+  end
+
+  def self.fifty_ago
+    current_time_pointer - 50
+  end
+
 end
 

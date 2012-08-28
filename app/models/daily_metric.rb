@@ -12,4 +12,8 @@ class DailyMetric < Metric
     7
   end
 
+  def self.current_time_pointer
+    Time.zone.now.to_i / 1.day
+  end
+
 end

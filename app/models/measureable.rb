@@ -13,13 +13,13 @@ class Measureable < ActiveRecord::Base
     end
   end
 
-  def self.chart_data_for(service, time_scale, metric_count)
+  def self.chart_data_for(service, time_scale, go_back_to)
     chart_data = []
     chart_options = { "xaxis" => { "ticks" => {} } }
 
     service.measureables.each do |measureable|
 
-      data, options = measureable.chart_data(time_scale, metric_count)
+      data, options = measureable.chart_data(time_scale, go_back_to)
 
       data.each {|datum| chart_data << datum}
       chart_options["xaxis"]["ticks"].merge! Hash[*options["xaxis"]["ticks"].flatten]
@@ -30,13 +30,17 @@ class Measureable < ActiveRecord::Base
     [chart_data, chart_options]
   end
 
-  def chart_data(time_scale, metric_count)
+  def chart_data(time_scale, go_back_to)
     chart_data = []
     chart_options = { "xaxis" => { "ticks" => {} } }
+    now = Metric[time_scale].current_time_pointer
 
-    metrics = send("#{time_scale}_metrics").limit(metric_count)
+    metrics = send("#{time_scale}_metrics").where("time_pointer >= ?", go_back_to)
+
+    metrics << Metric[time_scale].new(:time_pointer => now, :count => 0) unless metrics.last.try(:time_pointer) == now
+
     metrics.each do |metric|
-      chart_options["xaxis"]["ticks"][metric.time_pointer] = metric.label if metric.time_pointer % ((metric_count / 50) * metric.modulus) == 0
+      chart_options["xaxis"]["ticks"][metric.time_pointer] = metric.label if metric.time_pointer % (metric.modulus * (now - go_back_to) / 50) == 0
     end
 
     chart_data << {'label' => name, 'clickable' => true, 'bars' => { 'show' => true , 'lineWidth' => 0 }, 'data' => metrics.map{|metric| [metric.time_pointer, metric.count]}}

@@ -8,4 +8,8 @@ class WeeklyMetric < Metric
     4
   end
 
+  def self.current_time_pointer
+    Time.zone.now.to_i / 1.week
+  end
+
 end
