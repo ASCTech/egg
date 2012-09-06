@@ -4,11 +4,9 @@ class Event < ActiveRecord::Base
 
   validates_presence_of :timestamp
 
-  %w{hour day week}.each do |time_scale|
-    define_method time_scale do
-      timestamp.to_i / 1.send(time_scale)
-    end
-  end
+  def hour; timestamp.to_i / 1.hour; end
+  def day;  timestamp.to_i / 1.day;  end
+  def week; timestamp.to_i / 1.week; end
 
   def month
     (timestamp.year - 1970) * 12 + timestamp.month
@@ -16,11 +14,12 @@ class Event < ActiveRecord::Base
 
   after_create :increment_metrics
 
+
   private
   def increment_metrics
     return if processed?
 
-    self.class.connection.transaction do
+    transaction do
       HourlyMetric.increment  hour,   measureable_id
       DailyMetric.increment   day,    measureable_id
       WeeklyMetric.increment  week,   measureable_id
