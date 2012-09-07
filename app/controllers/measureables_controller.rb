@@ -2,7 +2,7 @@ class MeasureablesController < ApplicationController
   def show
     @measureable = Measureable.find(params[:id])
     @time_scale  = params[:time_scale] || 'hourly'
-    @metric_count = params[:metric_count] || 50
+    @go_back_to = params[:go_back_to] || Metric[@time_scale].fifty_ago
 
     @service = @measureable.service
 
@@ -10,7 +10,7 @@ class MeasureablesController < ApplicationController
 
     respond_to do |format|
       format.html
-      format.json { render :json => @measureable.chart_data(@time_scale, @metric_count.to_i).to_json }
+      format.json { render :json => @measureable.chart_data(@time_scale, @go_back_to.to_i).to_json }
     end
   end
 end
