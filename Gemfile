@@ -12,6 +12,8 @@ gem 'flot-rails'
 gem 'haml-rails'
 gem 'json'
 
+gem 'shibboleth-rails'
+
 gem 'jquery-rails'
 
 group :assets do

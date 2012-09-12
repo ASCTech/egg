@@ -1,5 +1,7 @@
 class EventsController < ActionController::Metal
 
+  skip_before_filter :require_shibboleth
+
   def create
     unless service_id = Service.lookup_id_for(request.headers["X-API-Key"])
       self.status = 403

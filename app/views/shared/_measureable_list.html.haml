@@ -1,6 +1,7 @@
 .well.sidebar-nav
   %h3 Measureables
   %ul.nav.nav-list
-    %li.nav-header Select a Measureable
-    =list_of @measureables do |measureable|
-      =link_to measureable.name, measureable_path(measureable.id, :time_scale => params[:time_scale])
+    - if @measureables.present?
+      %li.nav-header Select a Measureable
+      =list_of @measureables do |measureable|
+        =link_to measureable.name, measureable_path(measureable.id, :time_scale => params[:time_scale])

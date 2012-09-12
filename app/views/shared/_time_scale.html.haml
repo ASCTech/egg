@@ -5,5 +5,5 @@
     =list_of Metric::TIME_SCALES do |time_scale|
       - if @measureable
         =link_to time_scale.capitalize, measureable_path(@measureable, :time_scale => time_scale)
-      - else
+      - elsif @service
         =link_to time_scale.capitalize, service_path(@service, :time_scale => time_scale)
