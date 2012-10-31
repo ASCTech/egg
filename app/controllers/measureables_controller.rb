@@ -1,4 +1,5 @@
 class MeasureablesController < ApplicationController
+  before_filter :require_shibboleth
   def show
     @measureable = Measureable.find(params[:id])
     @time_scale  = params[:time_scale] || 'hourly'

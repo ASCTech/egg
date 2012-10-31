@@ -1,4 +1,5 @@
 class ServicesController < ApplicationController
+  before_filter :require_shibboleth
 
   def show
     @service    = Service.find_by_id(params[:id]) || @services.first

@@ -1,11 +1,9 @@
 class EventsController < ActionController::Metal
 
+  include Apian::ControllerExtensions
+
   def create
-    unless service_id = Service.lookup_id_for(request.headers["X-API-Key"])
-      self.status = 403
-      self.response_body = "API Key Not Found"
-      return
-    end
+    return forbidden unless service_id = Service.lookup_id_for(api_key)
     measureable_id = Measureable.lookup_id_for(service_id, params[:name])
 
     event = Event.new(:timestamp => params[:timestamp], :measureable_id => measureable_id)
