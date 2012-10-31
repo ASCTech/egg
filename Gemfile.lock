@@ -1,5 +1,6 @@
-PATH
-  remote: ../apian
+GIT
+  remote: git@github.com:ASCTech/apian.git
+  revision: 749409f4a3a9416bc886afbf53ddc614361a9591
   specs:
     apian (0.0.1)
       rails
