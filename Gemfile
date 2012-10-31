@@ -9,7 +9,7 @@ gem 'capistrano'
 gem 'delayed_job_active_record'
 gem 'daemons'
 gem 'flot-rails'
-gem 'apian', :path => '../apian'
+gem 'apian', :git => 'git@github.com:ASCTech/apian.git'
 gem 'haml-rails'
 gem 'json'
 
