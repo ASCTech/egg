@@ -47,3 +47,6 @@
 
       %footer
         %p ASC Technology Services
+        - if Rails.env.development?
+          = link_to 'Logout', user_session_path, :method => :delete
+

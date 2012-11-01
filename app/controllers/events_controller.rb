@@ -12,6 +12,7 @@ class EventsController < ActionController::Metal
       self.status = 201
     else
       self.response_body = event.errors.full_messages.join("\n")
+      Rails.logger.warn "Event not saved" + event.errors.full_messages.join("\n")
       self.status = 400
     end
   end

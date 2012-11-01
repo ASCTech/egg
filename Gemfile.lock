@@ -1,8 +1,8 @@
 GIT
   remote: git@github.com:ASCTech/apian.git
-  revision: 749409f4a3a9416bc886afbf53ddc614361a9591
+  revision: 263c99a54d27bf7c2fbb3e22757f16f6927d846e
   specs:
-    apian (0.0.1)
+    apian (0.0.2)
       rails
 
 GEM

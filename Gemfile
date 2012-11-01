@@ -10,6 +10,7 @@ gem 'delayed_job_active_record'
 gem 'daemons'
 gem 'flot-rails'
 gem 'apian', :git => 'git@github.com:ASCTech/apian.git'
+#gem 'apian', :path => '../apian'
 gem 'haml-rails'
 gem 'json'
 
