@@ -21,6 +21,7 @@ gem 'jquery-rails'
 group :assets do
   gem 'coffee-rails'
   gem 'sass-rails'
+  gem 'turbo-sprockets-rails3'
   gem 'twitter-bootstrap-rails'
   gem 'uglifier'
 end
