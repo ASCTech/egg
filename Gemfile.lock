@@ -170,7 +170,7 @@ DEPENDENCIES
   jquery-rails
   json
   mysql2
-  rails (= 3.2.11)
+  rails
   sass-rails
   shibboleth-rails
   shoulda-context
