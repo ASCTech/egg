@@ -9,7 +9,7 @@ set :application, "egg"
 set :deploy_to, "/var/www/apps/#{application}"
 
 set :scm, :git
-set :repository, "https://github.com/ASCTech/egg.git"
+set :repository, "git@github.com:ASCTech/egg.git"
 set :branch, "master"
 set :branch, $1 if `git branch` =~ /\* (\S+)\s/m
 set :deploy_via, :remote_cache
