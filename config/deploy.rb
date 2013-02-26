@@ -16,15 +16,6 @@ set :deploy_via, :remote_cache
 
 set :user, 'deploy'
 
-task :staging do
-  set :ssh_options, { :forward_agent => true, :port => 2200 }
-  set :rails_env, "staging"
-  role :app, "ruby-test.asc.ohio-state.edu"
-  role :web, "ruby-test.asc.ohio-state.edu"
-  role :db,  "ruby-test.asc.ohio-state.edu", :primary => true
-  set :sub_uri, "#{application}"
-end
-
 task :production do
   set :rails_env, "production"
   set :branch, 'master'
